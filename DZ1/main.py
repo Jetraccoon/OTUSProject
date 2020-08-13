@@ -22,6 +22,7 @@ def trace(func):
         nonlocal tracing
         tracing += 1
         print("Вхождение в функцию №", tracing)
+        print("-"*args[0],">","f(",args[0],")")
         result = func(*args)
         return result
 
