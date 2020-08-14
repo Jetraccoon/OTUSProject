@@ -75,9 +75,9 @@ print("Result of checking:",
 
 @trace
 def fibonacci(n):
-    if n in (1, 0):
+    if n in (1, 2):
         return 1
     return fibonacci(n - 1) + fibonacci(n - 2)
 
 
-print("Result function fibonacci:", fibonacci(3))
+print("Result function fibonacci:", fibonacci(15))
