@@ -16,10 +16,14 @@ def timer_decorator(func):
 
 
 def trace(func):
-
+    delim=[]
     @wraps(func)
     def wrapper(*args):
+        print("___"*len(delim)+'-->'+func.__name__+"("+str(args[0])+")")
+        delim.append(1)
         result = func(*args)
+        delim.pop()
+        print("___"*len(delim)+'<--'+func.__name__+"("+str(args[0])+")"+"="+str(result))
         return result
 
     return wrapper
@@ -46,18 +50,12 @@ def check_prime(num):
         x += 1
     return x == num
 
+
 def check_ev(num):
-    if num == 0:
-        return True
-    if num <= 0:
-        num = abs(num)
     return not num % 2
 
+
 def check_odd(num):
-    if num == 0:
-        return False
-    if num <= 0:
-        num = abs(num)
     return num % 2
 
 
@@ -77,9 +75,9 @@ print("Result of checking:",
 
 @trace
 def fibonacci(n):
-    if n in (1, 2):
+    if n in (1, 0):
         return 1
     return fibonacci(n - 1) + fibonacci(n - 2)
 
 
-print("Result function fibonacci:", fibonacci(15))
+print("Result function fibonacci:", fibonacci(3))
