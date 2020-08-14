@@ -51,16 +51,14 @@ def check_ev(num):
         return True
     if num <= 0:
         num = abs(num)
-    if not num % 2:
-        return num
+    return not num % 2
 
 def check_odd(num):
     if num == 0:
         return False
     if num <= 0:
         num = abs(num)
-    if num % 2:
-        return num
+    return num % 2
 
 
 @timer_decorator
