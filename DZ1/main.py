@@ -16,14 +16,9 @@ def timer_decorator(func):
 
 
 def trace(func):
-    tracing = 0
 
     @wraps(func)
     def wrapper(*args):
-        nonlocal tracing
-        tracing += 1
-        print("Вхождение в функцию №", tracing)
-        print("-"*args[0],">","f(",args[0],")")
         result = func(*args)
         return result
 
@@ -51,13 +46,29 @@ def check_prime(num):
         x += 1
     return x == num
 
+def check_ev(num):
+    if num == 0:
+        return True
+    if num <= 0:
+        num = abs(num)
+    if not num % 2:
+        return num
+
+def check_odd(num):
+    if num == 0:
+        return False
+    if num <= 0:
+        num = abs(num)
+    if num % 2:
+        return num
+
 
 @timer_decorator
 def check_num(*args, filt=IS_ODD):
     if filt == 'odd':
-        return list(filter(lambda x: x % 2, args))
+        return list(filter(check_odd, args))
     if filt == 'even':
-        return list(filter(lambda x: not x % 2, args))
+        return list(filter(check_ev, args))
     if filt == 'prime':
         return list(filter(check_prime, args))
 
