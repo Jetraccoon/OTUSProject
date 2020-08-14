@@ -1,4 +1,5 @@
 from functools import wraps
+from itertools import repeat
 from operator import pow
 from time import time
 
@@ -30,7 +31,7 @@ def trace(func):
 
 
 def exponentiation(*args, power=2):
-    return list(map(pow, args, [power] * len(args)))
+    return list(map(pow, args, repeat(power)))
 
 
 print("Result of exponentiation:", exponentiation(7, 2, 3, 6, 4, 7, 8, power=4))
@@ -52,13 +53,13 @@ def check_prime(num):
 
 
 @timer_decorator
-def check_num(*args, filt='odd'):
+def check_num(*args, filt=IS_ODD):
     if filt == 'odd':
         return list(filter(lambda x: x % 2, args))
     if filt == 'even':
         return list(filter(lambda x: not x % 2, args))
     if filt == 'prime':
-        return list(filter(lambda x: check_prime(x), args))
+        return list(filter(check_prime, args))
 
 
 print("Result of checking:",
