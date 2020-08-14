@@ -16,14 +16,15 @@ def timer_decorator(func):
 
 
 def trace(func):
-    delim=[]
+    delim = []
+
     @wraps(func)
     def wrapper(*args):
-        print("___"*len(delim)+'-->'+func.__name__+"("+str(args[0])+")")
+        print("___" * len(delim) + '-->' + func.__name__ + "(" + str(args[0]) + ")")
         delim.append(1)
         result = func(*args)
         delim.pop()
-        print("___"*len(delim)+'<--'+func.__name__+"("+str(args[0])+")"+"="+str(result))
+        print("___" * len(delim) + '<--' + func.__name__ + "(" + str(args[0]) + ")" + "=" + str(result))
         return result
 
     return wrapper
